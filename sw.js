@@ -1,5 +1,5 @@
-const CACHE = 'badr-kids-v1';
-const ASSETS = ['./','./index.html','./styles.css','./app.js','./manifest.webmanifest','./icons/icon-192.svg','./icons/icon-512.svg'];
+const CACHE = 'badr-kids-v2-sounds';
+const ASSETS = ['./','./index.html','./styles.css','./app.js','./manifest.webmanifest','./icons/icon-192.svg','./icons/icon-512.svg','./assets/audio/animals/roar.mp3','./assets/audio/animals/trumpet.mp3','./assets/audio/animals/monkey.mp3','./assets/audio/animals/neigh.mp3','./assets/audio/animals/moo.mp3','./assets/audio/animals/baa.mp3','./assets/audio/animals/woof.mp3','./assets/audio/animals/meow.mp3','./assets/audio/animals/cluck.mp3','./assets/audio/animals/quack.mp3','./assets/audio/animals/squeak.mp3','./assets/audio/animals/fox.mp3','./assets/audio/animals/camel.mp3','./assets/audio/animals/bubbles.mp3','./assets/audio/animals/turtle.mp3','./assets/audio/animals/dolphin.mp3','./assets/audio/animals/giraffe.mp3'];
 self.addEventListener('install', e => e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS))));
 self.addEventListener('activate', e => e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))));
 self.addEventListener('fetch', e => e.respondWith(caches.match(e.request).then(r => r || fetch(e.request).then(res => { const copy=res.clone(); caches.open(CACHE).then(c=>c.put(e.request, copy)); return res; }).catch(()=>caches.match('./index.html')))));
